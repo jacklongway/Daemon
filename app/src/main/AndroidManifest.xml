@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.longway.daemon">
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <service
+                android:name=".services.BackgroundService"
+                android:enabled="true"
+                android:process=":bg"
+                android:exported="true"
+                ></service>
+        <service
+                android:name=".services.GrayService"
+                android:enabled="true"
+                android:process=":gs"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="com.longway.android.GRAY_SERVICE"></action>
+            </intent-filter>
+        </service>
+
+        <service
+                android:name=".services.GrayService$GrayInnerService"
+                android:enabled="true"
+                android:exported="false"></service>
+        <service
+                android:name=".services.WhiteService"
+                android:enabled="true"
+                android:process=":ws"
+                android:exported="true"></service>
+
+        <receiver android:name=".receiver.DaemonReceiver"
+                >
+            <intent-filter>
+                <action android:name="com.longway.android.DAEMON_RECEIVER"></action>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
