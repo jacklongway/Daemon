@@ -17,6 +17,7 @@ public class JobScheduleService extends JobService {
     @Override
     public boolean onStartJob(JobParameters params) {
         Log.e(TAG, " onStartJob jobId:" + params.getJobId());
+        WhiteService.startService(this);
         return false;
     }
 
