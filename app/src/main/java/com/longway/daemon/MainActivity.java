@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         WhiteService.startService(this);
         GrayService.startService(this);
         mJobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
-        JobInfo jobInfo = new JobInfo.Builder(JOB_ID, new ComponentName(getPackageName(), JobScheduleService.class.getName())).setPeriodic(1000).build();
+        JobInfo jobInfo = new JobInfo.Builder(JOB_ID, new ComponentName(getPackageName(), JobScheduleService.class.getName())).setPeriodic(1000).setPersisted(true).build();
         mJobScheduler.schedule(jobInfo);
     }
 
